@@ -1,8 +1,7 @@
 {
   "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "npm rebuild && ./node_modules/.bin/vite build",
-    "watchPatterns": ["src/**/*", "server/**/*", "public/**/*", "package.json"]
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "Dockerfile"
   },
   "deploy": {
     "startCommand": "npm start",
