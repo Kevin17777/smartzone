@@ -10,7 +10,31 @@ function slugify(name) {
   return name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
 }
 
-function loadImage(name, category) {
+const PLACEHOLDER_COLORS = {
+  Samsung: '#1e40af',
+  Apple: '#1e293b',
+  Xiaomi: '#ea580c',
+  OnePlus: '#be123c',
+  Motorola: '#6d28d9',
+  SmartZone: '#0d9488',
+}
+
+function generatePlaceholder(name, brand) {
+  const bg = PLACEHOLDER_COLORS[brand] || '#334155'
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 3).toUpperCase()
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="533" viewBox="0 0 400 533">
+    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:${bg};stop-opacity:1"/><stop offset="100%" style="stop-color:${bg}cc;stop-opacity:1"/></linearGradient></defs>
+    <rect width="400" height="533" fill="url(#g)" rx="16"/>
+    <text x="200" y="220" text-anchor="middle" font-family="system-ui,sans-serif" font-size="72" font-weight="bold" fill="rgba(255,255,255,0.15)">${initials}</text>
+    <rect x="140" y="150" width="120" height="180" rx="16" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="4"/>
+    <circle cx="200" cy="210" r="8" fill="rgba(255,255,255,0.3)"/>
+    <circle cx="200" cy="240" r="4" fill="rgba(255,255,255,0.2)"/>
+    <text x="200" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.7)">${name}</text>
+  </svg>`
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
+}
+
+function loadImage(name, category, brand) {
   const slug = slugify(name)
   const folder = category === 'accesorios' ? 'accesorios' : 'celulares'
   const basePath = path.join(IMG_DIR, folder, slug)
@@ -22,7 +46,7 @@ function loadImage(name, category) {
       return `data:${mime};base64,${data.toString('base64')}`
     }
   }
-  return null
+  return generatePlaceholder(name, brand)
 }
 
 const phones = [
