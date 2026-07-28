@@ -14,7 +14,7 @@ const links = [
   { label: 'Inicio', path: '/', icon: Smartphone },
   { label: 'Celulares', path: '/celulares', icon: Smartphone },
   { label: 'Accesorios', path: '/accesorios', icon: Headphones },
-  { label: 'Nosotros', path: '/nosotros', icon: Info },
+  { label: 'Prueba', path: '/nosotros', icon: Info },
   { label: 'Admin', path: '/admin', icon: Settings },
 ]
 
