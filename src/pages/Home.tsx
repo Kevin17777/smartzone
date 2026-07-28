@@ -36,7 +36,7 @@ export default function Home() {
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 pt-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Catálogo</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Categorías</h2>
           <p className="text-slate-500 mt-3">Explora nuestro catálogo por categoría</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

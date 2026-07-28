@@ -110,7 +110,7 @@ export default function HeroSlider() {
               onClick={() => navigate(banner.category === 'accesorios' ? '/accesorios' : '/celulares')}
               className="rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-gray-900 shadow-lg transition-transform hover:scale-105 active:scale-95"
             >
-              Últimas Ofertas
+              Explorar ofertas
             </button>
             <button
               onClick={() => navigate(banner.category === 'accesorios' ? '/accesorios' : '/celulares')}
