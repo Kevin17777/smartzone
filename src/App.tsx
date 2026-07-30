@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { StoreProvider } from './data/store';
 import Navbar from './components/layout/Navbar';
@@ -14,6 +14,7 @@ import AdminPage from './pages/AdminPage';
 
 function AppContent() {
   const { pathname } = useLocation();
+  const [showBadge, setShowBadge] = useState(true);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -30,14 +31,25 @@ function AppContent() {
     <div className="min-h-screen flex flex-col">
       <ParticleBackground />
       <Navbar />
-      <a
-        href="https://artifactss-9895c.web.app"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed top-20 left-4 z-50 rounded-md bg-green-700/90 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-sm hover:bg-green-700 transition-colors no-underline"
-      >
-        Versión demo / En venta
-      </a>
+      <div className="fixed top-20 left-4 z-50 flex items-start gap-2">
+        {showBadge && (
+          <a
+            href="https://artifactss-9895c.web.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md bg-green-700/90 px-4 py-2 text-sm font-bold text-white shadow-lg backdrop-blur-sm hover:bg-green-700 transition-colors no-underline"
+          >
+            Versión demo / En venta
+          </a>
+        )}
+        <button
+          onClick={() => setShowBadge(!showBadge)}
+          className="rounded-md bg-black/50 px-2 py-2 text-white shadow-lg backdrop-blur-sm hover:bg-black/70 transition-colors text-sm leading-none"
+          aria-label={showBadge ? "Ocultar badge" : "Mostrar badge"}
+        >
+          {showBadge ? "✕" : "👁"}
+        </button>
+      </div>
       <main className="flex-1 pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
